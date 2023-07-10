@@ -21,7 +21,7 @@ class Channel:
         self.view_total = self.channel_data['items'][0]['statistics']['viewCount']
 
     def __str__(self):
-        return f'{self.title} ({self.url})'
+        return f"'{self.title} ({self.url})'"
 
     def __add__(self, other):
         return int(self.sub_count) + int(other.sub_count)
