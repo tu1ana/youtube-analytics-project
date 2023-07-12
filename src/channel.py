@@ -8,6 +8,7 @@ class Channel:
 
     api_key: str = os.getenv('YOUTUBE_API_KEY')
     youtube = build('youtube', 'v3', developerKey=api_key)
+    youtube_url = 'https://wwww.youtube.com/'
 
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
@@ -15,7 +16,7 @@ class Channel:
         self.channel_data = self.youtube.channels().list(id=self.channel_id, part='snippet,statistics').execute()
         self.title = self.channel_data['items'][0]['snippet']['title']
         self.description = self.channel_data['items'][0]['snippet']['description']
-        self.url = self.channel_data['items'][0]['snippet']['thumbnails']['default']['url']
+        self.url = self.youtube_url + self.channel_id
         self.sub_count = self.channel_data['items'][0]['statistics']['subscriberCount']
         self.video_count = self.channel_data['items'][0]['statistics']['videoCount']
         self.view_total = self.channel_data['items'][0]['statistics']['viewCount']
