@@ -1,13 +1,10 @@
 import json
-import os
-
-from googleapiclient.discovery import build
+from src.channel import Channel
 
 
 class Video:
 
-    api_key: str = os.getenv('YOUTUBE_API_KEY')
-    youtube = build('youtube', 'v3', developerKey=api_key)
+    youtube = Channel.get_service()
     youtube_url = 'https://wwww.youtube.com/'
 
     def __init__(self, video_id: str):
